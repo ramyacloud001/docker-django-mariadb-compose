@@ -1,8 +1,8 @@
-version: '3'
+version: '3.8'
 
 services:
   db:
-    image: mariadb
+    image: mariadb:latest
     environment:
       - MYSQL_ROOT_PASSWORD=mariadb
       - MYSQL_DATABASE=mariadb
@@ -10,8 +10,11 @@ services:
       - MYSQL_PASSWORD=mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - "3308:3306"
+      - 8080:8080
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
