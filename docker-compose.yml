@@ -3,11 +3,8 @@ version: '3.8'
 services:
   db:
     image: mariadb:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=mariadb
-      - MYSQL_DATABASE=mariadb
-      - MYSQL_USER=mariadb
-      - MYSQL_PASSWORD=mariadb
+    secrets_file:
+      - secrets.env
     volumes:
       - mariadb_data:/var/lib/mysql
   adminer:
